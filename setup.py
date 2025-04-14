@@ -1,4 +1,4 @@
-"""Setup for swxblock XBlock."""
+"""Setup for swreactxblock XBlock."""
 
 import os
 
@@ -22,20 +22,20 @@ def package_data(pkg, roots):
 
 
 setup(
-    name='swxblock-xblock',
+    name='swreactxblock-xblock',
     version='0.1',
-    description='swxblock XBlock',   # TODO: write a better description.
+    description='swreactxblock XBlock',   # TODO: write a better description.
     license='UNKNOWN',          # TODO: choose a license: 'AGPL v3' and 'Apache 2.0' are popular.
     packages=[
-        'swxblock',
+        'swreactxblock',
     ],
     install_requires=[
         'XBlock',
     ],
     entry_points={
         'xblock.v1': [
-            'swxblock = swxblock:SWXBlock',
+            'swreactxblock = swreactxblock:SWXBlock',
         ]
     },
-    package_data=package_data("swxblock", ["static", "public"]),
+    package_data=package_data("swreactxblock", ["static", "public"]),
 )

@@ -1,1 +1,0 @@
-from .swxblock import SWXBlock

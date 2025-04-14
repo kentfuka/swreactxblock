@@ -1,13 +1,13 @@
-/* Javascript for SWXBlock.
+/* Javascript for SWREACTXBlock.
  * TODO:  Enforce assignment due date for not starting another attempt.
  *        Disble Hint and ShowMe buttons if options are set.
  */
-function SWXStudent(runtime, element) {
+function SWREACTXStudent(runtime, element) {
 
-    console.info("SWXStudent start");
+    console.info("SWREACTXStudent start");
     var handlerUrlGetData = runtime.handlerUrl(element, 'get_data');
 
-    console.info("SWXStudent calling get_data at ",handlerUrlGetData);
+    console.info("SWREACTXStudent calling get_data at ",handlerUrlGetData);
 
     get_data_data = {}		// don't need to sent any data to get_data
         
@@ -16,16 +16,16 @@ function SWXStudent(runtime, element) {
         url: handlerUrlGetData,
         data: JSON.stringify(get_data_data),
         error: function(XMLHttpRequest, textStatus, errorThrown) { 
-               console.info("SWXstudent get_data POST error textStatus=",textStatus," errorThrown=",errorThrown);
+               console.info("SWREACTXstudent get_data POST error textStatus=",textStatus," errorThrown=",errorThrown);
                // alert("Status: " + textStatus); alert("Error: " + errorThrown); 
         },
         success: function (data,msg) {
-            console.info("SWXstudent GET success");
-            console.info("SWXstudent GET data",data);
-            console.info("SWXstudent GET msg",msg);
+            console.info("SWREACTXstudent GET success");
+            console.info("SWREACTXstudent GET data",data);
+            console.info("SWREACTXstudent GET msg",msg);
 
             var data_obj = JSON.parse(data);
-            console.info("SWXstudent GET data_obj",data_obj);
+            console.info("SWREACTXstudent GET data_obj",data_obj);
 
             // Set our context variables from the data we receive
             var question = data_obj.question;
@@ -40,17 +40,17 @@ function SWXStudent(runtime, element) {
             var min_steps = question.q_grade_min_steps_count;
             var min_steps_ded = question.q_grade_min_steps_ded;
         
-            console.info("SWXStudent question",question);
-            // console.info("SWXStudent enable_showme",enable_showme);
-            // console.info("SWXStudent enable_hint",enable_hint);
-            console.info("SWXStudent solution",solution);
-            console.info("SWXStudent count_attempts",count_attempts);
-            console.info("SWXStudent variants_counnt",variants_count);
-            console.info("SWXStudent max_attempts",max_attempts);
-            console.info("SWXStudent weight ",weight);
-            console.info("SWXStudent min steps",min_steps);
-            console.info("SWXStudent min steps dec",min_steps_ded);
-            console.info("SWXStudent grade",grade);
+            console.info("SWREACTXStudent question",question);
+            // console.info("SWREACTXStudent enable_showme",enable_showme);
+            // console.info("SWREACTXStudent enable_hint",enable_hint);
+            console.info("SWREACTXStudent solution",solution);
+            console.info("SWREACTXStudent count_attempts",count_attempts);
+            console.info("SWREACTXStudent variants_counnt",variants_count);
+            console.info("SWREACTXStudent max_attempts",max_attempts);
+            console.info("SWREACTXStudent weight ",weight);
+            console.info("SWREACTXStudent min steps",min_steps);
+            console.info("SWREACTXStudent min steps dec",min_steps_ded);
+            console.info("SWREACTXStudent grade",grade);
         
             if (typeof enable_showme === 'undefined') {
                 // console.info("enable_showme is undefined");
@@ -62,14 +62,14 @@ function SWXStudent(runtime, element) {
             };
         
             var handlerUrl = runtime.handlerUrl(element, 'save_grade');
-            console.info("SWXStudent handlerUrl",handlerUrl);
+            console.info("SWREACTXStudent handlerUrl",handlerUrl);
             var handlerUrlStart = runtime.handlerUrl(element, 'start_attempt');
-            console.info("SWXStudent handlerUrlStart",handlerUrlStart);
+            console.info("SWREACTXStudent handlerUrlStart",handlerUrlStart);
             var handlerUrlRetry = runtime.handlerUrl(element, 'retry');
-            console.info("SWXStudent handlerUrlRetry",handlerUrlRetry);
+            console.info("SWREACTXStudent handlerUrlRetry",handlerUrlRetry);
 
             // Get Primary Element Handles
-            var swxblock_block = $('.swxblock_block', element)[0];
+            var swreactxblock_block = $('.swreactxblock_block', element)[0];
             var stepwise_element = $('querium', element)[0];
         
             // Get Active Preview Element Handles
@@ -82,34 +82,34 @@ function SWXStudent(runtime, element) {
             preview_element.onclick = previewClicked;
         
             // Get Statistics Element Handles
-            var question_stats = $('.question-stats', swxblock_block)[0];
-            var star_box = $('.star-box', swxblock_block)[0];
-            var star1 = $('.star1', swxblock_block)[0];
-            var star2 = $('.star2', swxblock_block)[0];
-            var star3 = $('.star3', swxblock_block)[0];
-            var elapsed_time_count = $('.elapsed-time-count', swxblock_block)[0];
-            var grade_val = $('.grade-val', swxblock_block)[0];
-            var error_count = $('.error-count', swxblock_block)[0];
-            var hint_count = $('.hint-count', swxblock_block)[0];
-            var used_showme = $('.used-showme', swxblock_block)[0];
+            var question_stats = $('.question-stats', swreactxblock_block)[0];
+            var star_box = $('.star-box', swreactxblock_block)[0];
+            var star1 = $('.star1', swreactxblock_block)[0];
+            var star2 = $('.star2', swreactxblock_block)[0];
+            var star3 = $('.star3', swreactxblock_block)[0];
+            var elapsed_time_count = $('.elapsed-time-count', swreactxblock_block)[0];
+            var grade_val = $('.grade-val', swreactxblock_block)[0];
+            var error_count = $('.error-count', swreactxblock_block)[0];
+            var hint_count = $('.hint-count', swreactxblock_block)[0];
+            var used_showme = $('.used-showme', swreactxblock_block)[0];
         
             // Get Top Element Handles
-            var made_attempts = $('.made-attempts', swxblock_block)[0];
-            var min_steps_element = $('.min-steps', swxblock_block)[0];
-            // var variants_left = $('.variants-left', swxblock_block)[0];
-            // var click_to_begin = $('.click-to-begin', swxblock_block)[0];
-            // var question_info = $('.question-info', swxblock_block)[0];
-            // var too_many_attempts = $('.too-many-attempts', swxblock_block)[0];
+            var made_attempts = $('.made-attempts', swreactxblock_block)[0];
+            var min_steps_element = $('.min-steps', swreactxblock_block)[0];
+            // var variants_left = $('.variants-left', swreactxblock_block)[0];
+            // var click_to_begin = $('.click-to-begin', swreactxblock_block)[0];
+            // var question_info = $('.question-info', swreactxblock_block)[0];
+            // var too_many_attempts = $('.too-many-attempts', swreactxblock_block)[0];
         
             // Get Solution Element Handles
             var solution_element = $('.solution', element)[0];
         
             // Get Retry Button Handles
-            // var retry_button = $('.stepwise-retry', swxblock_block)[0];
-            var retry_button_variants = $('.stepwise-retry-variants', swxblock_block)[0];
+            // var retry_button = $('.stepwise-retry', swreactxblock_block)[0];
+            var retry_button_variants = $('.stepwise-retry-variants', swreactxblock_block)[0];
         
             // Overall StepWise UI Handles
-            // var xblock_student_view = $('.xblock-student_view', swxblock_block)[0];
+            // var xblock_student_view = $('.xblock-student_view', swreactxblock_block)[0];
         
         
             retry_data = {
@@ -148,13 +148,13 @@ function SWXStudent(runtime, element) {
                       url: handlerUrlRetry,
                       data: JSON.stringify(retry_data),
                       success: function (data) {
-                          console.info("SWXstudent retry POST success");
-                          console.info("SWXstudent retry POST data",data);
+                          console.info("SWREACTXstudent retry POST success");
+                          console.info("SWREACTXstudent retry POST data",data);
                           question_obj = JSON.parse(data);
                           question = question_obj.question;
-                          console.info("SWXstudent retry POST response question",question);
+                          console.info("SWREACTXstudent retry POST response question",question);
                           preview_element = set_preview_element();
-                          console.info("SWXstudent retry POST new preview_element",preview_element);
+                          console.info("SWREACTXstudent retry POST new preview_element",preview_element);
                       }
                   });
                   console.info("retry button click ended");
@@ -262,15 +262,15 @@ function SWXStudent(runtime, element) {
                     // scribbles: false
                 };
         
-                console.info("SWXstudent previewClicked() started");
-                console.info("SWXstudent previewClicked() count_attempts ",count_attempts);
-                console.info("SWXstudent previewClicked() max_attempts ",max_attempts);
-                // console.info("SWXstudent previewClicked() weight ",weight);
-                // console.info("SWXstudent previewClicked() min_steps ",min_steps);
-                // console.info("SWXstudent previewClicked() min_steps_ded ",min_steps_ded);
+                console.info("SWREACTXstudent previewClicked() started");
+                console.info("SWREACTXstudent previewClicked() count_attempts ",count_attempts);
+                console.info("SWREACTXstudent previewClicked() max_attempts ",max_attempts);
+                // console.info("SWREACTXstudent previewClicked() weight ",weight);
+                // console.info("SWREACTXstudent previewClicked() min_steps ",min_steps);
+                // console.info("SWREACTXstudent previewClicked() min_steps_ded ",min_steps_ded);
                 // Don't let student launch question if they've exceeded the limit on question attempts
                 if (max_attempts != -1 && count_attempts >= max_attempts) {
-                    console.info("SWXstudent previewClicked() too many attempts");
+                    console.info("SWREACTXstudent previewClicked() too many attempts");
                     $('.click-to-begin').hide();
                     $('.too-many-attempts').show();
                     $('.too-many-attempts').onclick = null;
@@ -289,11 +289,11 @@ function SWXStudent(runtime, element) {
                 } else {  // false and false
                     options.policies = '$A5$';
                 };
-                console.info("SWXstudent previewClicked() options.policies set to",options.policies);
+                console.info("SWREACTXstudent previewClicked() options.policies set to",options.policies);
         
                 function celebrate(stats) {
-                    swxblock_block.classList.remove("block_working");
-                    swxblock_block.classList.add("block_worked");
+                    swreactxblock_block.classList.remove("block_working");
+                    swreactxblock_block.classList.add("block_worked");
         
                     console.info("Celebrate", stats);
                     solution = stats;
@@ -393,11 +393,11 @@ function SWXStudent(runtime, element) {
                         url: handlerUrlStart,
                         data: JSON.stringify(start_attempt_data),
                         success: function (data) {
-                          console.info("SWXstudent start_attempt POST success");
+                          console.info("SWREACTXstudent start_attempt POST success");
                           start_attempt_obj = JSON.parse(data);
                           count_attempts = start_attempt_obj.count_attempts;
                           update_grade_attempts_data();
-                          console.info("SWXstudent start_attempt POST response count_attempts=",count_attempts);
+                          console.info("SWREACTXstudent start_attempt POST response count_attempts=",count_attempts);
                       }
                     });
                 }
@@ -424,40 +424,40 @@ function SWXStudent(runtime, element) {
                 solution_element.classList.add("preview_hidden");
         
                 stepwise_element.style.display = 'block';
-                swxblock_block.classList.add("block_working");
-                swxblock_block.classList.remove("block_worked");
+                swreactxblock_block.classList.add("block_working");
+                swreactxblock_block.classList.remove("block_worked");
                 setTimeout( function(){
-                    swxblock_block.scrollIntoView({ behavior:"smooth"});
+                    swreactxblock_block.scrollIntoView({ behavior:"smooth"});
                 }, 250);
         
-                console.info("SWXblock previewClicked() calling querium.startQuestion with options ",options);
+                console.info("SWREACTXblock previewClicked() calling querium.startQuestion with options ",options);
                 querium.startQuestion( 'OpenStaxHomework', sId, qDef, callbacks, options, stepwise_element );    // launch!
         
             }   
         
             function retryClicked(){
-                console.info("SWXstudent retryClicked() started");
+                console.info("SWREACTXstudent retryClicked() started");
                 $.ajax({
                     type: "POST",
                     url: handlerUrlRetry,
                     // data: JSON.stringify(),
                     success: function (data,msg) {
-                        console.info("SWXstudent retry POST success");
-                        console.info("SWXstudent retry POST data",data);
-                        console.info("SWXstudent retry POST msg",msg);
+                        console.info("SWREACTXstudent retry POST success");
+                        console.info("SWREACTXstudent retry POST data",data);
+                        console.info("SWREACTXstudent retry POST msg",msg);
                     }
                 });
-                console.info("SWXstudent retryClicked() ended");
+                console.info("SWREACTXstudent retryClicked() ended");
             }
         
             // NOT USED AT PRESENT
             //success Type: Function( PlainObject data, String textStatus, jqXHR jqXHR )
             function retrySuccess(data, textstatus, jqXHR) {
-                console.info("SWXstudent retrySuccess() started");
-                console.info("SWXstudent retrySuccess() data",data);
-                console.info("SWXstudent retrySuccess() textStatus",textStatus);
-                console.info("SWXstudent retrySuccess() jqXHR",jqXHR);
-                console.info("SWXstudent retrySuccess() ended");
+                console.info("SWREACTXstudent retrySuccess() started");
+                console.info("SWREACTXstudent retrySuccess() data",data);
+                console.info("SWREACTXstudent retrySuccess() textStatus",textStatus);
+                console.info("SWREACTXstudent retrySuccess() jqXHR",jqXHR);
+                console.info("SWREACTXstudent retrySuccess() ended");
             }
         
             function updateStats(){
@@ -741,7 +741,7 @@ function SWXStudent(runtime, element) {
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
        }
     });
-    console.info("SWXStudent end");
+    console.info("SWREACTXStudent end");
     $('.loading-box').show();        // Show loading box while we wait
     $('.question-info').hide();      // Don't show question info box while we wait
     $('.click-to-begin-box').hide(); // Don't show click to begin msg box while we wait

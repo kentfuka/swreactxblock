@@ -1,5 +1,5 @@
-/* Javascript for SWXAuthor. */
-function SWXAuthor(runtime, element, questions) {
+/* Javascript for SWREACTXAuthor. */
+function SWREACTXAuthor(runtime, element, questions) {
     var qu1 = $( "#variant1", element );
     var dm1 = $( ".display_math", qu1 );
 
@@ -30,7 +30,7 @@ function SWXAuthor(runtime, element, questions) {
     var qu10 = $( "#variant10", element );
     var dm10 = $( ".display_math", qu10 );
 
-    console.info('SWXAuthor questions',questions);
+    console.info('SWREACTXAuthor questions',questions);
 
     switch (questions) {
         case 1:
